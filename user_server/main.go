@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/degary/logger"
-	"time"
 )
 
 func initLogger(name string, logPath, logName string, level string) {
@@ -10,6 +9,7 @@ func initLogger(name string, logPath, logName string, level string) {
 	config["log_path"] = logPath
 	config["log_name"] = logName
 	config["log_level"] = level
+	config["log_split_type"] = "Size"
 	err := logger.InitLogger(name, config)
 	//log = logger.NewConsoleLogger(level)
 	if err != nil {
@@ -19,13 +19,13 @@ func initLogger(name string, logPath, logName string, level string) {
 	return
 }
 func Run() {
-	for i := 0; i < 10; i++ {
-		logger.Warn("user server is running")
-		time.Sleep(1 * time.Second)
+	for {
+		logger.Warn("user server is running The id:25903,number:7956272103222810765,result:75")
+		//time.Sleep(1 * time.Second)
 	}
 }
 
 func main() {
-	initLogger("console", "F:\\log\\", "user_server", "debug")
+	initLogger("file", "F:\\log\\", "user_server", "debug")
 	Run()
 }
