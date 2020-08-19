@@ -1,22 +1,20 @@
 package main //必须有个main包
 import (
-	"fmt"
-	"runtime"
+	"github.com/gin-gonic/gin"
 )
 
-func test(config ...string) {
-	fmt.Printf("type of config is %T\n", config)
-	configs := append(config, "{}")[0]
-	fmt.Println(configs)
+type User struct {
+	Id   int
+	Name string
 }
 
 func main() {
-	config := "abc"
-	test(config)
-	fmt.Println("GOMAXPROCS=", runtime.GOMAXPROCS(0))
-	a := 19
-	mod := a % 10
-	qu := a / 10
-	fmt.Println(qu)
-	fmt.Println(mod)
+
+	users := []User{{Id: 123, Name: "user1"}, {Id: 124, Name: "user2"}}
+
+	r := gin.Default()
+	r.GET("/users", func(c *gin.Context) {
+		c.JSON(200, users)
+	})
+	r.Run(":8080")
 }
