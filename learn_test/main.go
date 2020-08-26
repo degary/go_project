@@ -1,20 +1,17 @@
 package main //必须有个main包
 import (
-	"github.com/gin-gonic/gin"
+	"fmt"
+	"time"
 )
 
-type User struct {
-	Id   int
-	Name string
-}
-
 func main() {
+	var i int = 10
+	go func() {
+		for j := 0; j < 10; j++ {
+			i += 1
+		}
+	}()
+	time.Sleep(1 * time.Second)
+	fmt.Printf("i=%d\n", i)
 
-	users := []User{{Id: 123, Name: "user1"}, {Id: 124, Name: "user2"}}
-
-	r := gin.Default()
-	r.GET("/users", func(c *gin.Context) {
-		c.JSON(200, users)
-	})
-	r.Run(":8080")
 }
