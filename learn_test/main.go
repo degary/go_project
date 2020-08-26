@@ -13,5 +13,4 @@ func main() {
 	}()
 	time.Sleep(1 * time.Second)
 	fmt.Printf("i=%d\n", i)
-
 }
